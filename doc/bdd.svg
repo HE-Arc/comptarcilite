@@ -1,50 +1,57 @@
-<svg version="1.1" baseProfile="full" width="357.5" height="295" viewbox="0 0 357.5 295" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font-weight:bold; font-size:12pt; font-family:'Calibri', Helvetica, sans-serif;;stroke-width:3;stroke-linejoin:round;stroke-linecap:round">
+<svg version="1.1" baseProfile="full" width="346" height="472" viewbox="0 0 346 472" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font-weight:bold; font-size:12pt; font-family:'Calibri', Helvetica, sans-serif;;stroke-width:3;stroke-linejoin:round;stroke-linecap:round">
   <title >nomnoml</title>
   <desc >[UTILISATEUR|id;pseudo;mdp;mail]
 [COMPTE|id;nom;description;id_proprietaire]
-[TRANSACTION|id;montant;description;id_cat;id_compte]
-[CATEGORIE|id_cat;description]
+[TRANSACTION|id;date_heure;montant;description;id_cat;id_compte;id_utilisateur]
+[CATEGORIE|id_cat;nom;description]
 
 
 
 [UTILISATEUR]n---n[COMPTE]
 [TRANSACTION]1---n[COMPTE]
 [TRANSACTION]1---n[CATEGORIE]
+[UTILISATEUR]n---1[TRANSACTION]
 </desc>
-  <text x="56.5" y="148" style="fill: #33322E;font-weight:normal;">n</text>
-  <text x="87.4" y="167.5" style="fill: #33322E;font-weight:normal;">n</text>
-  <path d="M74 128 L74 155.5 L79.4 175.5 L79.4 175.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
-  <text x="212" y="149" style="fill: #33322E;font-weight:normal;">1</text>
-  <text x="135.1" y="167.5" style="fill: #33322E;font-weight:normal;">n</text>
-  <path d="M204 129 L174.5 155.5 L152.6 175.5 L152.6 175.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
-  <text x="262.1" y="155.5" style="fill: #33322E;font-weight:normal;">1</text>
-  <text x="292.5" y="182.5" style="fill: #33322E;font-weight:normal;">n</text>
-  <path d="M279.6 135.5 L284.5 155.5 L284.5 190.5 L284.5 190.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
-  <rect x="13.5" y="21.5" height="107" width="121" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
-  <text x="74" y="43" style="fill: #33322E;text-anchor: middle;">UTILISATEUR</text>
-  <path d="M13.5 52.5 L134.5 52.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
-  <text x="21.5" y="74" style="fill: #33322E;font-weight:normal;">id</text>
-  <text x="21.5" y="89" style="fill: #33322E;font-weight:normal;">pseudo</text>
-  <text x="21.5" y="104" style="fill: #33322E;font-weight:normal;">mdp</text>
-  <text x="21.5" y="119" style="fill: #33322E;font-weight:normal;">mail</text>
-  <rect x="14.5" y="175.5" height="107" width="159" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
-  <text x="94" y="197" style="fill: #33322E;text-anchor: middle;">COMPTE</text>
-  <path d="M14.5 206.5 L173.5 206.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
-  <text x="22.5" y="228" style="fill: #33322E;font-weight:normal;">id</text>
-  <text x="22.5" y="243" style="fill: #33322E;font-weight:normal;">nom</text>
-  <text x="22.5" y="258" style="fill: #33322E;font-weight:normal;">description</text>
-  <text x="22.5" y="273" style="fill: #33322E;font-weight:normal;">id_proprietaire</text>
-  <rect x="204.5" y="13.5" height="122" width="121" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
-  <text x="265" y="35" style="fill: #33322E;text-anchor: middle;">TRANSACTION</text>
-  <path d="M204.5 44.5 L325.5 44.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
-  <text x="212.5" y="66" style="fill: #33322E;font-weight:normal;">id</text>
-  <text x="212.5" y="81" style="fill: #33322E;font-weight:normal;">montant</text>
-  <text x="212.5" y="96" style="fill: #33322E;font-weight:normal;">description</text>
-  <text x="212.5" y="111" style="fill: #33322E;font-weight:normal;">id_cat</text>
-  <text x="212.5" y="126" style="fill: #33322E;font-weight:normal;">id_compte</text>
-  <rect x="224.5" y="190.5" height="77" width="121" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
-  <text x="285" y="212" style="fill: #33322E;text-anchor: middle;">CATEGORIE</text>
-  <path d="M224.5 221.5 L345.5 221.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
-  <text x="232.5" y="243" style="fill: #33322E;font-weight:normal;">id_cat</text>
-  <text x="232.5" y="258" style="fill: #33322E;font-weight:normal;">description</text>
+  <text x="130.5" y="127.4" style="fill: #33322E;font-weight:normal;">n</text>
+  <text x="60.9" y="344.5" style="fill: #33322E;font-weight:normal;">n</text>
+  <path d="M122.5 107.4 L73 140.5 L73 236.5 L73 236.5 L73 332.5 L73 332.5 L78.4 352.5 L78.4 352.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <text x="189.8" y="332.5" style="fill: #33322E;font-weight:normal;">1</text>
+  <text x="126.5" y="344.5" style="fill: #33322E;font-weight:normal;">n</text>
+  <path d="M181.8 312.5 L163 332.5 L144 352.5 L144 352.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <text x="251.3" y="332.5" style="fill: #33322E;font-weight:normal;">1</text>
+  <text x="281" y="352" style="fill: #33322E;font-weight:normal;">n</text>
+  <path d="M268.8 312.5 L273 332.5 L273 360 L273 360 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <text x="216.5" y="140.5" style="fill: #33322E;font-weight:normal;">n</text>
+  <text x="261" y="152.5" style="fill: #33322E;font-weight:normal;">1</text>
+  <path d="M234 120.5 L253 140.5 L253 160.5 L253 160.5 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;"></path>
+  <rect x="122.5" y="13.5" height="107" width="121" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <text x="183" y="35" style="fill: #33322E;text-anchor: middle;">UTILISATEUR</text>
+  <path d="M122.5 44.5 L243.5 44.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="130.5" y="66" style="fill: #33322E;font-weight:normal;">id</text>
+  <text x="130.5" y="81" style="fill: #33322E;font-weight:normal;">pseudo</text>
+  <text x="130.5" y="96" style="fill: #33322E;font-weight:normal;">mdp</text>
+  <text x="130.5" y="111" style="fill: #33322E;font-weight:normal;">mail</text>
+  <rect x="13.5" y="352.5" height="107" width="159" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <text x="93" y="374" style="fill: #33322E;text-anchor: middle;">COMPTE</text>
+  <path d="M13.5 383.5 L172.5 383.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="21.5" y="405" style="fill: #33322E;font-weight:normal;">id</text>
+  <text x="21.5" y="420" style="fill: #33322E;font-weight:normal;">nom</text>
+  <text x="21.5" y="435" style="fill: #33322E;font-weight:normal;">description</text>
+  <text x="21.5" y="450" style="fill: #33322E;font-weight:normal;">id_proprietaire</text>
+  <rect x="178.5" y="160.5" height="152" width="149" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <text x="253" y="182" style="fill: #33322E;text-anchor: middle;">TRANSACTION</text>
+  <path d="M178.5 191.5 L327.5 191.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="186.5" y="213" style="fill: #33322E;font-weight:normal;">id</text>
+  <text x="186.5" y="228" style="fill: #33322E;font-weight:normal;">date_heure</text>
+  <text x="186.5" y="243" style="fill: #33322E;font-weight:normal;">montant</text>
+  <text x="186.5" y="258" style="fill: #33322E;font-weight:normal;">description</text>
+  <text x="186.5" y="273" style="fill: #33322E;font-weight:normal;">id_cat</text>
+  <text x="186.5" y="288" style="fill: #33322E;font-weight:normal;">id_compte</text>
+  <text x="186.5" y="303" style="fill: #33322E;font-weight:normal;">id_utilisateur</text>
+  <rect x="212.5" y="360.5" height="92" width="121" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;"></rect>
+  <text x="273" y="382" style="fill: #33322E;text-anchor: middle;">CATEGORIE</text>
+  <path d="M212.5 391.5 L333.5 391.5" style="stroke:#33322E;fill:none;stroke-dasharray:none;"></path>
+  <text x="220.5" y="413" style="fill: #33322E;font-weight:normal;">id_cat</text>
+  <text x="220.5" y="428" style="fill: #33322E;font-weight:normal;">nom</text>
+  <text x="220.5" y="443" style="fill: #33322E;font-weight:normal;">description</text>
 </svg>
