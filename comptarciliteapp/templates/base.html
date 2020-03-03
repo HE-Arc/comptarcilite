@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
+
+    </nav>
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>
