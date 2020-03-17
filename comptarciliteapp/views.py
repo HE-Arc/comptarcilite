@@ -8,3 +8,10 @@ from django.urls import reverse_lazy
 def index(request):
     context = {}
     return render(request, 'index.html', context)
+
+
+def create_account(request):
+    context = {}
+    return render(request, 'create_account.html', context)
+
+
