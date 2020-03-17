@@ -8,5 +8,35 @@
             <h1 class="display-4 mb-5">Créer un compte</h1>
         </div>
     </div>
+
+    <div class="row">
+        <form class="form" method="post">
+            <div class="form-group">
+                <label for="nom_compte" class="form-label">Nom du compte *</label>
+                <input type="text" class="form-control" name="nom_compte" id="nom_compte"
+                       placeholder="Nouveau compte" required>
+            </div>
+            <div class="form-group">
+                <label for="membres" class="form-label">Membres du groupe</label>
+                <div>les membres ici
+                    <input type="text" name="membres"></div>
+            </div>
+            <div class="form-group">
+                <label for="membre" class="form-label">Ajouter un membre</label>
+                <input type="text" class="form-control" name="membre" id="membre">
+                <a class="btn btn-default"><span class="fas fa-plus-circle"></span></a>
+            </div>
+            <div class="form-group">
+                <label for="solde" class="form-label">Solde initial</label>
+                <input type="number" step="0.05" name="solde" id="solde" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success w-100" id="btn-add" type="submit" value="add">
+                    Créer le compte
+                </button>
+            </div>
+        </form>
+    </div>
+
 </div>
 {% endblock %}
