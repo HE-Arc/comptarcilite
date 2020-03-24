@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["192.168.56.101", "localhost", "127.0.0.1","comptarcilite.srvz-webapp.he-arc.ch"]
 
+LOGIN_URL = '/auth/'
 
 # Application definition
 
@@ -50,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'comptarciliteapp.middleware.authrequiredmiddleware.AuthRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'comptarcilite.urls'
@@ -106,9 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-CH'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -121,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
