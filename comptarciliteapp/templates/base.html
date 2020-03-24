@@ -10,10 +10,24 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
+    {% if user.is_authenticated %}
 
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark default-color">
+        <a class="navbar-brand" href="{% url 'index' %}">Comptarcilite</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
-    {% block content %}{% endblock %}
+    {% endif %} {% block content %}{% endblock %}
 
 </body>
 
