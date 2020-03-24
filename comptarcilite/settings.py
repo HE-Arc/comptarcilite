@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ["192.168.56.101", "localhost", "127.0.0.1","comptarcilite.srvz-webapp.he-arc.ch"]
 
 LOGIN_URL = '/auth/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Application definition
 
@@ -125,5 +128,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'

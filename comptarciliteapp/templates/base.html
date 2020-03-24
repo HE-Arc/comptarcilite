@@ -1,34 +1,19 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-    <title>{% block title %}{% endblock %}</title>
-    {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-</head>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    </head>
 
-<body>
-    {% if user.is_authenticated %}
+    <body>
+        {% block navbar %}
+            {% include  "navbar.html" %}
+            {% endblock %}
+        {% block content %}{% endblock %}
 
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark default-color">
-        <a class="navbar-brand" href="{% url 'index' %}">Comptarcilite</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    {% endif %} {% block content %}{% endblock %}
-
-</body>
-
+    </body>
 </html>
