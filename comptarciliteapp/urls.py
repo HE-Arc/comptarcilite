@@ -9,6 +9,6 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/login', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
-    path('create_account', views.create_account, name='create_account'),
+    path('create_account', views.AccountCreateView.as_view(), name='create_account'),
     path('', views.index, name='index'),
 ]

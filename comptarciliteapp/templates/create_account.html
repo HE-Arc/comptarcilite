@@ -11,15 +11,20 @@
 
     <div class="row">
         <form class="form" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <input type="text" class="form-control" name="nom_compte" id="nom_compte"
                        placeholder="Nom du compte" required>
             </div>
             <div class="form-group">
+                <textarea class="form-control" name="descr_compte" id="descr_compte"
+                       placeholder="Description du compte" required></textarea>
+            </div>
+            <div class="form-group">
                 <label for="membres" class="form-label">Membres du groupe [VA CHANGER]</label>
                 <div class="row">
                     <ul>
-                        <li>Membre 1</li>
+                        <li>{{ user.username }}</li>
                     </ul>
                 </div>
             </div>

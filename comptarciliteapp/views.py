@@ -21,4 +21,17 @@ class AccountCreateView(View):
         return render(request, 'create_account.html', context)
 
     def post(self, request):
+        account = Account()
+        account.name = request.POST.get("nom_compte")
+        account.description = request.POST.get("descr_compte")
+
+        account.save()
+
+        mem = Membership()
+        mem.user = request.user
+        mem.account = account
+        mem.is_owner = True
+
+        mem.save()
+
         return 0
