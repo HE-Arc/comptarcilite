@@ -33,3 +33,4 @@ class Membership(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_owner = models.BooleanField()
+
