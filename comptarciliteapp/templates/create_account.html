@@ -12,27 +12,26 @@
     <div class="row">
         <form class="form" method="post">
             <div class="form-group">
-                <label for="nom_compte" class="form-label">Nom du compte *</label>
                 <input type="text" class="form-control" name="nom_compte" id="nom_compte"
-                       placeholder="Nouveau compte" required>
+                       placeholder="Nom du compte" required>
             </div>
             <div class="form-group">
-                <label for="membres" class="form-label">Membres du groupe</label>
-                <div>les membres ici
-                    <input type="text" name="membres">
+                <label for="membres" class="form-label">Membres du groupe [VA CHANGER]</label>
+                <div class="row">
+                    <ul>
+                        <li>Membre 1</li>
+                    </ul>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="membre" class="form-label">Ajouter un membre</label>
-                <input type="text" class="form-control" name="membre" id="membre">
-                <a class="btn btn-default"><span class="fas fa-plus-circle"></span></a>
+            <div class="form-group form-inline">
+                <input type="text" class="form-control w-75" name="membre" id="membre" placeholder="Ajouter un membre">
+                <a class="btn btn-default w-25"><span class="fas fa-plus-circle fa-2x text-info"></span></a>
             </div>
             <div class="form-group">
-                <label for="solde" class="form-label">Solde initial</label>
-                <input type="number" step="0.05" name="solde" id="solde" placeholder="0.00">
+                <input type="number" step="0.05" class="form-control" name="solde" id="solde" placeholder="Solde initial">
             </div>
             <div class="form-group">
-                <button class="btn btn-success w-100" id="btn-add" type="submit" value="add">
+                <button class="btn btn-success w-100" id="btn-add" type="submit" value="create">
                     Créer le compte
                 </button>
             </div>
