@@ -12,6 +12,13 @@
     <div class="row">
         <form class="form" method="post">
             {% csrf_token %}
+
+            {% if result == 'ok' %}
+                <span class="text-success">Compte {{ nom_compte }} ajouté avec succès!</span>
+            {% elif result == 'error' %}
+                <span class="text-danger">Erreur lors de l'ajout du compte {{ nom_compte }}!</span>
+            {% endif %}
+
             <div class="form-group">
                 <input type="text" class="form-control" name="nom_compte" id="nom_compte"
                        placeholder="Nom du compte" required>
@@ -41,7 +48,7 @@
                 </button>
             </div>
         </form>
-    </div>
+    </>
 
 </div>
 {% endblock %}

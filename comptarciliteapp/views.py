@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import generic, View
 from django.urls import reverse_lazy
@@ -21,17 +21,26 @@ class AccountCreateView(View):
         return render(request, 'create_account.html', context)
 
     def post(self, request):
-        account = Account()
-        account.name = request.POST.get("nom_compte")
-        account.description = request.POST.get("descr_compte")
+        result = 'ok'
+        try:
+            account = Account()
+            account.name = request.POST.get("nom_compte")
+            account.description = request.POST.get("descr_compte")
 
-        account.save()
+            account.save()
 
-        mem = Membership()
-        mem.user = request.user
-        mem.account = account
-        mem.is_owner = True
+            mem = Membership()
+            mem.user = request.user
+            mem.account = account
+            mem.is_owner = True
 
-        mem.save()
+            mem.save()
+        except:
+            result = 'error'
 
-        return 0
+        context = {
+            'result': result,
+            'nom_compte': request.POST.get("nom_compte"),
+            'descr_compte': request.POST.get("descr_compte"),
+        }
+        return render(request, 'create_account.html', context)
