@@ -54,10 +54,19 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'login_required.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'comptarciliteapp.middleware.authrequiredmiddleware.AuthRequiredMiddleware',
+    #'comptarciliteapp.middleware.authrequiredmiddleware.AuthRequiredMiddleware',
+]
+
+
+LOGIN_REQUIRED_IGNORE_PATHS = [
+    r'/auth/logout/$'
+    r'/auth/signup/$',
+    r'/admin/$',
+    r'/admin/login/$',
 ]
 
 ROOT_URLCONF = 'comptarcilite.urls'

@@ -11,11 +11,9 @@ class AuthRequiredMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         #if getattr(view_func, 'login_exempt', False):
         #    return
-        return
-        
-        print(self, request, view_func, view_args, view_kwargs)
+
         if request.user.is_authenticated:
-            return
+            return None
         else:
             return login_required(view_func)(request, *view_args, **view_kwargs)
 

@@ -7,8 +7,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     #path('login/',TemplateView.as_view(template_name="registration/login.html"),name='login'),
     path('admin/', admin.site.urls),
-    path('auth/login', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
-    path('create_account', views.AccountCreateView.as_view(), name='create_account'),
+    path('auth/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
+    path('create_account/', views.AccountCreateView.as_view(), name='create_account'),
     path('edit_account/<pk>', views.AccountEditView.as_view(), name='edit_account'),
     path('auth/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -19,7 +19,7 @@ urlpatterns = [
     path('auth/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('auth/reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
-    path('auth/signup',views.UserAccountCreateView.as_view(),name='signup'),
+    path('auth/signup/',views.UserAccountCreateView.as_view(),name='signup'),
     
     path('', views.index, name='index'),
 ]
