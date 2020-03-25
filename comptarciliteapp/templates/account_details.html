@@ -14,18 +14,18 @@
             {% csrf_token %}
 
             {% if result == 'ok' %}
-                <span class="text-success">Compte {{ nom_compte }} ajouté avec succès!</span>
+                <span class="text-success">Compte {{ nom_compte }} enregistré avec succès!</span>
             {% elif result == 'error' %}
-                <span class="text-danger">Erreur lors de l'ajout du compte {{ nom_compte }}!</span>
+                <span class="text-danger">Erreur lors de l'enregistrement du compte {{ nom_compte }}!</span>
             {% endif %}
 
             <div class="form-group">
                 <input type="text" class="form-control" name="nom_compte" id="nom_compte"
-                       placeholder="Nom du compte" required>
+                       placeholder="Nom du compte" required value="{% if nom_compte is not None %}{{ nom_compte }}{% endif %}">
             </div>
             <div class="form-group">
                 <textarea class="form-control" name="descr_compte" id="descr_compte"
-                       placeholder="Description du compte" required></textarea>
+                       placeholder="Description du compte" required>{% if descr_compte is not None %}{{ descr_compte }}{% endif %}</textarea>
             </div>
             <div class="form-group">
                 <label for="membres" class="form-label">Membres du groupe [VA CHANGER]</label>
@@ -40,15 +40,19 @@
                 <a class="btn btn-default w-25"><span class="fas fa-plus-circle fa-2x text-info"></span></a>
             </div>
             <div class="form-group">
-                <input type="number" step="0.05" class="form-control" name="solde" id="solde" placeholder="Solde initial">
+                <input type="number" step="0.05" class="form-control" name="solde" id="solde" placeholder="Solde initial" {% if nom_compte is not None %}disabled{% endif %}>
             </div>
             <div class="form-group">
                 <button class="btn btn-success w-100" id="btn-add" type="submit" value="create">
-                    Créer le compte
+                    {% if nom_compte is not None %}
+                        Mettre à jour
+                    {% else %}
+                        Créer le compte
+                    {% endif %}
                 </button>
             </div>
         </form>
-    </>
+    </div>
 
 </div>
 {% endblock %}

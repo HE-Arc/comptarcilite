@@ -12,14 +12,11 @@ def index(request):
     context = {}
     return render(request, 'index.html', context)
 
-# def create_account(request):
-#     context = {}
-#     return render(request, 'create_account.html', context)
 
 class AccountCreateView(View):
     def get(self, request):
         context = {}
-        return render(request, 'create_account.html', context)
+        return render(request, 'account_details.html', context)
 
     def post(self, request):
         result = 'ok'
@@ -42,8 +39,33 @@ class AccountCreateView(View):
             'nom_compte': request.POST.get("nom_compte"),
             'descr_compte': request.POST.get("descr_compte"),
         }
-        return render(request, 'create_account.html', context)
+        return render(request, 'account_details.html', context)
 
+
+class AccountEditView(View):
+    def get(self, request, pk):
+        account = Account.objects.get(pk=pk)
+        context = {'nom_compte': account.name,
+                   'descr_compte': account.description,
+                   'membres_compte': account.members}
+        return render(request, 'account_details.html', context)
+
+    def post(self, request, pk):
+        result = 'ok'
+        try:
+            account = Account.objects.get(pk=pk)
+            account.name = request.POST.get("nom_compte")
+            account.description = request.POST.get("descr_compte")
+            account.save()
+        except:
+            result = 'error'
+
+        context = {
+            'result': result,
+            'nom_compte': request.POST.get("nom_compte"),
+            'descr_compte': request.POST.get("descr_compte"),
+        }
+        return render(request, 'account_details.html', context)
 
 class TransactionCreateView(View):
     def post(self, request):
