@@ -27,14 +27,12 @@ class AccountCreateView(View):
             account = Account()
             account.name = request.POST.get("nom_compte")
             account.description = request.POST.get("descr_compte")
-
             account.save()
 
             mem = Membership()
             mem.user = request.user
             mem.account = account
             mem.is_owner = True
-
             mem.save()
         except:
             result = 'error'
@@ -45,6 +43,22 @@ class AccountCreateView(View):
             'descr_compte': request.POST.get("descr_compte"),
         }
         return render(request, 'create_account.html', context)
+
+
+class TransactionCreateView(View):
+    def post(self, request):
+        result = 'ok'
+        try:
+            trans = Transaction()
+            trans.timestamp = request.POST.get('timestamp_trans')
+            trans.amount = request.POST.get('amount_trans')
+            trans.description = request.POST.get('descr_trans')
+            trans.account = Account.objects.get(pk=request.POST.get('id_account_trans'))
+            trans.user = request.user
+        except:
+            result = 'error'
+
+        return redirect('index')
 
 
 from django.contrib.auth import login, authenticate

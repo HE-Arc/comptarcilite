@@ -17,8 +17,8 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField()
     amount = models.DecimalField(max_digits=16, decimal_places=2)
     description = models.TextField()
-    id_account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    id_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     #id_cat = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
