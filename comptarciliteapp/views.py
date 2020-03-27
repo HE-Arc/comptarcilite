@@ -67,6 +67,7 @@ class AccountEditView(View):
         }
         return render(request, 'account_details.html', context)
 
+
 class TransactionCreateView(View):
     def post(self, request):
         result = 'ok'
