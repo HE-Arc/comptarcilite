@@ -99,7 +99,8 @@ class UserAccountCreateView(View):
 
     def post(self, request):
         form = UserCreationFormImproved(request.POST)
-        print(form)
+        
+        print(form.is_valid())
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
