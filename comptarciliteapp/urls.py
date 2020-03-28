@@ -20,6 +20,8 @@ urlpatterns = [
     path('auth/reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('auth/signup/',views.UserAccountCreateView.as_view(),name='signup'),
+
+    path('auth/activate/<uidb64>/<token>/',views.activate_account, name='activate'),
     
     path('', views.index, name='index'),
 ]
