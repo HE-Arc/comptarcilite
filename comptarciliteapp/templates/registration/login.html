@@ -10,11 +10,11 @@
                         <div class="alert alert-danger text-center">Login incorrect</div>
                         {% endif %}
                         <div class="form-group row">
-                            <label for="email" class="col-12 col-sm-4 col-md- col-form-label text-sm-right">Username</label>
+                            <label for="email" class="col-12 col-sm-4 col-md- col-form-label text-sm-right">Nom d'utilisteur</label>
                             <input id="{{ form.username.id_for_label }}" maxlength="100" class="col-12 col-sm-6  form-control" name="{{ form.username.html_name }}" required=required value="" type="text" >
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-12 col-sm-4 col-form-label text-sm-right">Password</label>
+                            <label for="password" class="col-12 col-sm-4 col-form-label text-sm-right">Mot de passe</label>
                             <input id="{{ form.password.id_for_label }}" maxlength="100" class="col-12 col-sm-6  form-control" name="{{ form.password.html_name }}" required=required value="" type="password" >
                         </div>
                         <div class="form-group row">
@@ -25,9 +25,9 @@
                         <div class="form-group row mb-0">
                             <div class="offset-3 offset-sm-4">
                                 <button type="submit" class="btn btn-primary">
-                                        Login
-                                    </button>
-                                <a class="btn btn-link" href="{% url 'password_reset' %}">Forgot Your Password?</a>
+                                        Valider
+                                </button>
+                                <a class="btn btn-link" href="{% url 'password_reset' %}">Mot de passe perdu ?</a>
                             </div>
                         </div>
                     </form>

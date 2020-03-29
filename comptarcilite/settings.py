@@ -38,15 +38,16 @@ LOGOUT_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'comptarciliteapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'comptarciliteapp',
     'bootstrap4',
-    'rest_framework'
+    'rest_framework',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'comptarcilite.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -149,3 +149,5 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = config('EMAIL_USERNAME')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = "Comptarcilite <no-reply@comptarcilite.tk>"

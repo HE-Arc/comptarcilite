@@ -7,3 +7,4 @@ sqlparse==0.3.0
 django-bootstrap4
 django-login-required-middleware
 python-decouple
+django-widget-tweaks
