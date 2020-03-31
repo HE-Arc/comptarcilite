@@ -27,5 +27,4 @@ urlpatterns = [
     
     path('', views.index, name='index'),
     path('listAccounts/', views.listAccounts, name='listAccounts'),
-    path('accounts/', include('django.contrib.auth.urls')),
 ]
