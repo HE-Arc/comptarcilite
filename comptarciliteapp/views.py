@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import generic, View
 from django.urls import reverse_lazy
 from .models import Account, Membership, Transaction, User
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -136,6 +137,12 @@ class UserAccountCreateView(View):
             context = {'form': form, 'message' : message}
 
         return render(request, 'registration/signup.html', context)
+
+
+def get_user_list(request):
+    users = User.objects.all()
+    return JsonResponse(serializers.serialize('json', users), safe=False)
+
 
 ## Activation du lien d'inscription
 def activateAccountUser(request, uidb64, token):

@@ -10,6 +10,8 @@ urlpatterns = [
     path('auth/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('create_account/', views.AccountCreateView.as_view(), name='create_account'),
     path('edit_account/<pk>', views.AccountEditView.as_view(), name='edit_account'),
+    path('users/', views.get_user_list, name='users_list_api'),
+
     path('auth/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('auth/password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
