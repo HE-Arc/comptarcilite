@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.urls import reverse_lazy
 from .models import Account, Membership, Transaction, User
 from django.contrib.auth.decorators import login_required
-from .serializers import AccountSerializer
+from .serializers import AccountSerializer, TransactionSerializer
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -166,3 +166,13 @@ def listAccounts(request):
     accounts = Account.objects.all()
     serializer = AccountSerializer(accounts, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+    
+## Controleur pour la page de chaque compte.
+def getTransactionsForAccount(request, account_id=None):
+    transactions = Transaction.objects.filter(account=account_id)
+    try:
+        serializer = TransactionSerializer(transactions)
+        return JsonResponse(serializer.data, safe=False)
+    except:
+        return JsonResponse({})

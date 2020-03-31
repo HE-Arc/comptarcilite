@@ -23,11 +23,21 @@
     </div>
 
     <div class="row">
-        <ul>
-            <a v-for="(account, index) in results" v-bind:href="'accounts/' + account.id">
-                <li>[[account.name]]</li>
-            </a>
-        </ul>
+        <div class="col-md-2">
+            <ul>
+                <button v-for="(account, index) in results" @click="getAccount(account.id)">
+                    <li>[[account.name]]</li>
+                </button>
+            </ul>
+        </div>
+        <div v-if="accountGet" class="col-md-10">
+            <h3>[[accountId]]</h3>
+            <li v-if="transactions !== []" v-for="(transactions, index) in transactions">[[transactions.description]]</li>
+        </div>
+        <div v-else class="col-md-10">
+            <h3>Select an account !</h3>
+        </div>
+
     </div>
 </div>
 
