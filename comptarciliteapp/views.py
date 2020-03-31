@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.urls import reverse_lazy
 from .models import Account, Membership, Transaction, User
 from django.contrib.auth.decorators import login_required
-from django.core import serializers
+from .serializers import AccountSerializer
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -20,6 +20,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -160,4 +161,8 @@ def activateAccountUser(request, uidb64, token):
         return render(request, 'registration/signup.html',  {'message' : message})
 
 
-    
+## Controleur pour la page d'acceuil de chaque utilisateur.
+def listAccounts(request):
+    accounts = Account.objects.all()
+    serializer = AccountSerializer(accounts, many=True)
+    return JsonResponse(serializer.data, safe=False)
