@@ -1,10 +1,33 @@
-{% extends 'base.html' %} {% block title %}Comptarcilite index{% endblock %} {% block content %}
-<div class="container">
+{% extends 'base.html' %} {% block title %}Comptarcilite index{% endblock %} {% block import %} {% load static %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="{% static "js/vueApp.js" %}"></script>
+{% endblock %} {% block content %}
+
+
+
+<div class="container" id="app">
 
     <div class="row">
         <div class="col-md-12">
             <h1 class="display-4 mb-5">Comptarcilite index</h1>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <h2>Accounts list</h2>
+        </div>
+        <div class="col-md-10">
+            <h2>Account details</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul>
+            <a v-for="(account, index) in results" v-bind:href="'accounts/' + account.id">
+                <li>[[account.name]]</li>
+            </a>
+        </ul>
     </div>
 </div>
 

@@ -1,19 +1,23 @@
 <!doctype html>
 <html lang="fr">
 
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-        {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap4 %} {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    </head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
 
-    <body>
-        {% block navbar %}
-            {% include  "navbar.html" %}
-            {% endblock %}
-        {% block content %}{% endblock %}
-        {% block scripts %}{% endblock %}
-    </body>
+<body>
+    {% block navbar %} 
+        {% include "navbar.html" %} 
+    {% endblock %} 
+    {% block content %}
+    {% endblock %}
+    {% block import %}
+    {% endblock %}
+
+</body>
+
 </html>
