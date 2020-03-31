@@ -25,6 +25,9 @@ server "comptarcilite.srvz-webapp.he-arc.ch", user: "poweruser",
 			                  roles: %w{app db web}, port: 1425
 
 set :deploy_to, "/var/www/#{fetch(:application)}"
+
+
+set :branch, ENV.fetch('REVISION', 'master')
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
