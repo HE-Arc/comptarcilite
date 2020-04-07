@@ -29,4 +29,8 @@ urlpatterns = [
     path('listAccounts/', views.listAccounts, name='listAccounts'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('transactions/account/<int:account_id>', views.getTransactionsForAccount, name='transactionsForAccount'),
+    path('members/<int:member_id>', views.getMemberById, name='membersById'),
+    path('members/<member_name>', views.getMemberByName, name='memberName'),
+    path('members/', views.getMembers, name='members'),
+
 ]

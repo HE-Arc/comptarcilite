@@ -1,7 +1,9 @@
-{% extends 'base.html' %} {% block title %}Comptarcilite | Créer un compte{% endblock %}
-
-{% block content %}
-<div class="container">
+{% extends 'base.html' %} {% block title %}Comptarcilite | Créer un compte{% endblock %} {% block import %} {% load static %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="{% static "js/vueApp.js" %}"></script>
+{% endblock %} {% block content %}
+<div class="container" id="app">
 
     <div class="row">
         <div class="col-md-12">
@@ -11,33 +13,30 @@
 
     <div class="row">
         <form class="form" method="post">
-            {% csrf_token %}
-
-            {% if result == 'ok' %}
-                <span class="text-success">Compte {{ nom_compte }} enregistré avec succès!</span>
-            {% elif result == 'error' %}
-                <span class="text-danger">Erreur lors de l'enregistrement du compte {{ nom_compte }}!</span>
-            {% endif %}
+            {% csrf_token %} {% if result == 'ok' %}
+            <span class="text-success">Compte {{ nom_compte }} enregistré avec succès!</span> {% elif result == 'error' %}
+            <span class="text-danger">Erreur lors de l'enregistrement du compte {{ nom_compte }}!</span> {% endif %}
 
             <div class="form-group">
-                <input type="text" class="form-control" name="nom_compte" id="nom_compte"
-                       placeholder="Nom du compte" required value="{% if nom_compte is not None %}{{ nom_compte }}{% endif %}">
+                <input type="text" class="form-control" name="nom_compte" id="nom_compte" placeholder="Nom du compte" required value="{% if nom_compte is not None %}{{ nom_compte }}{% endif %}">
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="descr_compte" id="descr_compte"
-                       placeholder="Description du compte" required>{% if descr_compte is not None %}{{ descr_compte }}{% endif %}</textarea>
+                <textarea class="form-control" name="descr_compte" id="descr_compte" placeholder="Description du compte" required>{% if descr_compte is not None %}{{ descr_compte }}{% endif %}</textarea>
             </div>
             <div class="form-group">
-                <label for="membres" class="form-label">Membres du groupe [VA CHANGER]</label>
+                <label for="membres" class="form-label">Membres du groupe</label>
                 <div class="row">
                     <ul>
-                        <li>{{ user.username }}</li>
+                        <li v-for="(member, index) in members">[[member.username]]</li>
                     </ul>
                 </div>
             </div>
             <div class="form-group form-inline">
-                <input type="text" class="form-control w-75" name="membre" id="membre" placeholder="Ajouter un membre" onclick="load_users()">
-                <a class="btn btn-default w-25"><span class="fas fa-plus-circle fa-2x text-info"></span></a>
+                <input type="text" list="memberList" class="form-control w-75" name="membre" id="membre" placeholder="Ajouter un membre" v-model="memberName">
+                <datalist id="memberList">
+                    <option v-for="(member, index) in membersList" v-bind:value="member.username"></option>
+                </datalist>
+                <button class="btn btn-default w-25" @click="getMember(memberName)"><span class="fas fa-plus-circle fa-2x text-info"></span></button>
             </div>
             <div class="form-group">
                 <input type="number" step="0.05" class="form-control" name="solde" id="solde" placeholder="Solde initial" {% if nom_compte is not None %}disabled{% endif %}>

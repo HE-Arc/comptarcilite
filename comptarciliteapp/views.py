@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.urls import reverse_lazy
 from .models import Account, Membership, Transaction, User
 from django.contrib.auth.decorators import login_required
-from .serializers import AccountSerializer, TransactionSerializer
+from .serializers import AccountSerializer, TransactionSerializer, UserSerializer
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -142,7 +142,8 @@ class UserAccountCreateView(View):
 
 def get_user_list(request):
     users = User.objects.all()
-    return JsonResponse(serializers.serialize('json', users), safe=False)
+    serializer = UserSerializer(users, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 
 ## Activation du lien d'inscription
@@ -176,3 +177,25 @@ def getTransactionsForAccount(request, account_id=None):
         return JsonResponse(serializer.data, safe=False)
     except:
         return JsonResponse({})
+
+
+def getMemberById(request, member_id=None):
+    member = User.objects.filter(id=member_id)
+    try:
+        serializer = UserSerializer(member)
+        return JsonResponse(serializer.data, safe=False)
+    except:
+        return JsonResponse({})
+
+def getMemberByName(request, member_name=None):
+    member = User.objects.get(username=member_name)
+    try:
+        serializer = UserSerializer(member)
+        return JsonResponse(serializer.data, safe=False)
+    except:
+        return JsonResponse({})
+
+def getMembers(request):
+    members = User.objects.all()
+    serializer = UserSerializer(members, many=True)
+    return JsonResponse(serializer.data, safe=False)
