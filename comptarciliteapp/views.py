@@ -172,7 +172,7 @@ def listAccounts(request):
 def getTransactionsForAccount(request, account_id=None):
     transactions = Transaction.objects.filter(account=account_id)
     try:
-        serializer = TransactionSerializer(transactions)
+        serializer = TransactionSerializer(transactions, many=True)
         return JsonResponse(serializer.data, safe=False)
     except:
         return JsonResponse({})
