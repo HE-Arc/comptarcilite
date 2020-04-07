@@ -45,6 +45,7 @@ let vue = new Vue({
                 //Adding thousand separator to account's total amount
                 this.total = this.total.replace(/\B(?=(\d{3})+(?!\d))/g, "'");
                 console.log(this.total);
+                console.log(this.accounts[this.accountId]);
             });
         },
 

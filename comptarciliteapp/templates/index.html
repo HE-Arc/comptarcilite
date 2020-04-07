@@ -37,6 +37,7 @@
         <div class="col-md-9 offset-md-1">
             <h2 class="d-flex d-md-none justify-content-center">Détails du compte</h2>
             <h3 v-if="accountGet" class="account-name-spacer">[[accounts[accountId].name]]</h3>
+            <p v-if="accountGet" class="font-italic">[[accounts[accountId].description]]</p>
             <h3 v-else class="text-warning">Sélectionnez un compte !</h3>
 
             <div v-if="accountGet" class="table-responsive">
@@ -52,10 +53,10 @@
                     <tr v-if="transactions !== []" v-for="(transaction, index) in transactions">
                         <td>[[transaction.timestamp.split("T")[0] ]] [[ transaction.timestamp.split("T")[1].split("+")[0] ]]</td>
                         <td>[[transaction.description]]</td>
-                        <td v-if="transaction.amount>0">[[ transaction.amount.replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
+                        <td v-if="transaction.amount>0" class="text-success">[[ transaction.amount.replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                         <td v-else></td>
                         <td v-if="transaction.amount>0"></td>
-                        <td v-else>[[transaction.amount.split("-")[1].replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
+                        <td v-else class="text-danger">[[transaction.amount.split("-")[1].replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                     </tr>
                 </table>
 

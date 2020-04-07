@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['id', 'name', 'members']
+        fields = ['id', 'name', 'description', 'members']
 
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
