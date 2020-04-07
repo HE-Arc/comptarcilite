@@ -8,6 +8,7 @@ let vue = new Vue({
         accountId: null,
         transactions: [],
         accountGet: false,
+        total: 0,
     },
     mounted() {
         axios.get(url).then(response => {
@@ -22,6 +23,13 @@ let vue = new Vue({
                 this.accountId = this.accounts.findIndex(account => account.id === id);
                 this.accountGet = true;
                 console.log(this.transactions);
+
+                for(let t in this.transactions)
+                {
+                    this.total += parseFloat(this.transactions[t].amount);
+                }
+
+                console.log(this.total);
             });
         }
     },

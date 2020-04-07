@@ -8,53 +8,60 @@
 
 <div class="container" id="app">
 
-    <div class="row">
+    <div class="row title-spacer">
         <div class="col-md-12">
-            <h1 class="display-4 mb-5">Comptarcilite index</h1>
+            <h1 class="display-4 mb-5">Comptarcilité index</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <h2>Accounts list</h2>
+    <div class="row space-for-bar-under border-bottom">
+        <div class="col-md-3">
+            <h2>Liste des comptes</h2>
         </div>
-        <div class="col-md-10">
-            <h2>Account details</h2>
+        <div class="col-md-9">
+            <h2 class="text-center">Détails du compte</h2>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-2">
-            <button type="button" class="btn btn-light" v-for="(account, index) in accounts" @click="getAccount(account.id)">
-                [[account.name]]
-            </button>
+            <ul class="list-unstyled">
+                <li v-for="(account, index) in accounts">
+                    <button type="button" class="btn btn-light border w-100 vertical-spacer" @click="getAccount(account.id)">
+                        [[account.name]]
+                    </button>
+                </li>
+            </ul>
         </div>
-        <div v-if="accountGet" class="col-md-10">
-            <h3>[[accounts[accountId].name]]</h3>
+
+        <div class="col-md-9 offset-md-1">
+            <h3 v-if="accountGet" class="account-name-spacer">[[accounts[accountId].name]]</h3>
+            <h3 v-else>Sélectionnez un compte !</h3>
+
+
+            <div v-if="accountGet" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Crédit</th>
+                            <th scope="col">Débit</th>
+                        </tr>
+                    </thead>
+                    <tr v-if="transactions !== []" v-for="(transaction, index) in transactions">
+                        <td>[[transaction.timestamp.split("T")[0] ]] [[ transaction.timestamp.split("T")[1].split("+")[0] ]]</td>
+                        <td>[[transaction.description]]</td>
+                        <td v-if="transaction.amount>0">[[transaction.amount]]</td>
+                        <td v-else></td>
+                        <td v-if="transaction.amount>0"></td>
+                        <td v-else>[[-transaction.amount]]</td>
+                    </tr>
+                </table>
+
+                <p>Balance du compte : <span v-if="total>0" class="text-success total">[[ total ]]</span><span v-if="total<0" class="text-danger total">[[ total ]]</span></p>
+            </div>
         </div>
-        <div v-else class="col-md-10">
-            <h3>Select an account !</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div v-if="accountGet" class="col-md-10">
-            <table class="table">
-                <thead>
-                    <td>Date</td>
-                    <td>Description</td>
-                    <td>Crédit</td>
-                    <td>Débit</td>
-                </thead>
-                <tr v-if="transactions !== []" v-for="(transaction, index) in transactions">
-                    <td>[[transaction.timestamp]]</td>
-                    <td>[[transaction.description]]</td>
-                    <td v-if="transaction.amount>0">[[transaction.amount]]</td>
-                    <td v-else></td>
-                    <td v-if="transaction.amount>0"></td>
-                    <td v-else>[[-transaction.amount]]</td>
-                </tr>
-            </table>
-        </div>
+
     </div>
 </div>
 
