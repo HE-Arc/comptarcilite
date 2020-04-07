@@ -5,7 +5,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    #path('login/',TemplateView.as_view(template_name="registration/login.html"),name='login'),
+    path('login/',TemplateView.as_view(template_name="registration/login.html"),name='login'),
     path('admin/', admin.site.urls),
     path('auth/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('create_account/', views.AccountCreateView.as_view(), name='create_account'),
@@ -27,6 +27,5 @@ urlpatterns = [
     
     path('', views.index, name='index'),
     path('listAccounts/', views.listAccounts, name='listAccounts'),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('transactions/account/<int:account_id>', views.getTransactionsForAccount, name='transactionsForAccount'),
 ]
