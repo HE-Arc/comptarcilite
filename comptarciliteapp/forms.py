@@ -13,6 +13,11 @@ class UserCreationFormImproved(UserCreationForm):
 
     def clean(self):
        email = self.cleaned_data.get('email')
+       username = self.cleaned_data.get('username')
+
+       if User.objects.filter(username=username).exists():
+           raise ValidationError("Nom d'utilisateur déjà utilisé")
+
        if User.objects.filter(email=email).exists():
             raise ValidationError("Adresse courriel déjà utilisée")
        return self.cleaned_data
