@@ -1,11 +1,12 @@
-{% extends 'base.html' %} {% block title %}Comptarcilite index{% endblock %} {% block import %} {% load static %}
+{% extends 'base.html' %}
+{% block title %}Comptarcilite index{% endblock %}
+{% block import %}
+{% load static %}
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="{% static "js/vueApp.js" %}"></script>
-{% endblock %} {% block content %}
-
-
-
+{% endblock %}
+{% block content %}
 <div class="container" id="app">
 
     <div class="row title-spacer">
@@ -37,7 +38,6 @@
             <h3 v-if="accountGet" class="account-name-spacer">[[accounts[accountId].name]]</h3>
             <h3 v-else>Sélectionnez un compte !</h3>
 
-
             <div v-if="accountGet" class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -51,14 +51,18 @@
                     <tr v-if="transactions !== []" v-for="(transaction, index) in transactions">
                         <td>[[transaction.timestamp.split("T")[0] ]] [[ transaction.timestamp.split("T")[1].split("+")[0] ]]</td>
                         <td>[[transaction.description]]</td>
-                        <td v-if="transaction.amount>0">[[transaction.amount]]</td>
+                        <td v-if="transaction.amount>0">[[ transaction.amount.replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                         <td v-else></td>
                         <td v-if="transaction.amount>0"></td>
-                        <td v-else>[[-transaction.amount]]</td>
+                        <td v-else>[[transaction.amount.split("-")[1].replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                     </tr>
                 </table>
 
-                <p>Balance du compte : <span v-if="total>0" class="text-success total">[[ total ]]</span><span v-if="total<0" class="text-danger total">[[ total ]]</span></p>
+                <p>
+                    Balance du compte :
+                    <span v-if="total[0] == '-'" class="text-danger total">[[ total ]]</span>
+                    <span v-else class="text-success total">[[ total ]]</span>
+                </p>
             </div>
         </div>
 
