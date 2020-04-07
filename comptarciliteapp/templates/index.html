@@ -8,7 +8,6 @@
 {% endblock %}
 {% block content %}
 <div class="container" id="app">
-
     <div class="row title-spacer">
         <div class="col-md-12">
             <h1 class="display-4 mb-5">Comptarcilité index</h1>
@@ -16,15 +15,16 @@
     </div>
     <div class="row space-for-bar-under border-bottom">
         <div class="col-md-3">
-            <h2>Liste des comptes</h2>
+            <h2 class="d-none d-md-flex">Liste des comptes</h2>
         </div>
         <div class="col-md-9">
-            <h2 class="text-center">Détails du compte</h2>
+            <h2 class="d-none d-md-flex justify-content-center">Détails du compte</h2>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-2">
+            <h2 class="d-flex d-md-none justify-content-center">Liste des comptes</h2>
             <ul class="list-unstyled">
                 <li v-for="(account, index) in accounts">
                     <button type="button" class="btn btn-light border w-100 vertical-spacer" @click="getAccount(account.id)">
@@ -35,8 +35,9 @@
         </div>
 
         <div class="col-md-9 offset-md-1">
+            <h2 class="d-flex d-md-none justify-content-center">Détails du compte</h2>
             <h3 v-if="accountGet" class="account-name-spacer">[[accounts[accountId].name]]</h3>
-            <h3 v-else>Sélectionnez un compte !</h3>
+            <h3 v-else class="text-warning">Sélectionnez un compte !</h3>
 
             <div v-if="accountGet" class="table-responsive">
                 <table class="table table-hover">
