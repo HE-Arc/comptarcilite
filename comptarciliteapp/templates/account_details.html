@@ -27,7 +27,10 @@
                 <label for="membres" class="form-label">Membres du groupe</label>
                 <div class="row">
                     <ul>
-                        <li v-for="(member, index) in members">[[member.username]]</li>
+                        <div v-for="(member, index) in members">
+                            <li>[[member.username]]</li>
+                            <input name="members[]" type="checkbox" v-bind:value="member.id" hidden checked>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                 <datalist id="memberList">
                     <option v-for="(member, index) in membersList" v-bind:value="member.username"></option>
                 </datalist>
-                <button class="btn btn-default w-25" @click="getMember(memberName)"><span class="fas fa-plus-circle fa-2x text-info"></span></button>
+                <button type="button" class="btn btn-default w-25" @click="getMember(memberName)"><span class="fas fa-plus-circle fa-2x text-info"></span></button>
             </div>
             <div class="form-group">
                 <input type="number" step="0.05" class="form-control" name="solde" id="solde" placeholder="Solde initial" {% if nom_compte is not None %}disabled{% endif %}>

@@ -48,6 +48,15 @@ class AccountCreateView(View):
             mem.account = account
             mem.is_owner = True
             mem.save()
+            
+            for id in request.POST.getlist("members[]"):
+                mem = Membership()
+                user = User.objects.get(id=id)
+                mem.user = user
+                mem.account = account
+                mem.is_owner = True
+                mem.save()
+            
         except:
             result = 'error'
 
@@ -164,7 +173,7 @@ def activateAccountUser(request, uidb64, token):
 
 ## Controleur pour la page d'acceuil de chaque utilisateur.
 def listAccounts(request):
-    accounts = Account.objects.all()
+    accounts = Account.objects.filter(members=request.user)
     serializer = AccountSerializer(accounts, many=True)
     return JsonResponse(serializer.data, safe=False)
 
