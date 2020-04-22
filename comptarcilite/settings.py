@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 LOGIN_REQUIRED_IGNORE_PATHS = [
     r'/auth/logout/$'
-    r'/auth/signup/$',
+    r'/auth/signups/$',
     r'/admin/$',
     r'/admin/login/$',
 ]
@@ -95,12 +95,18 @@ WSGI_APPLICATION = 'comptarcilite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': os.environ.get('GROUPNAME'),
+    'USER': os.environ.get('GROUPNAME', 'root'),
+    'PASSWORD': os.environ.get('PASSWORD', ''),
+    'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+    'PORT': os.environ.get('MYSQL_PORT', '3306'),
+    'OPTIONS': {
+      'charset': 'utf8mb4'
     }
+  }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -146,10 +152,10 @@ STATICFILES_DIRS = [
 #EMAIL
 from decouple import config
 
-#EMAIL_HOST = config('EMAIL_HOST')
-#EMAIL_PORT = config('EMAIL_PORT', cast=int)
-#EMAIL_HOST_USER = config('EMAIL_USERNAME')
-#EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
-#EMAIL_USE_TLS = True
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "Comptarcilite <no-reply@comptarcilite.tk>"
