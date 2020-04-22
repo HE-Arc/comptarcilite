@@ -98,7 +98,7 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': os.environ.get('GROUPNAME'),
-    'USER': os.environ.get('GROUPNAME', 'root'),
+    'USER': os.environ.get('GROUPNAME', 'comptarcilite'),
     'PASSWORD': os.environ.get('PASSWORD', ''),
     'HOST': os.environ.get('MYSQL_HOST', 'mysql'),
     'PORT': os.environ.get('MYSQL_PORT', '3306'),
