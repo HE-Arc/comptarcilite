@@ -95,17 +95,10 @@ WSGI_APPLICATION = 'comptarcilite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': os.environ.get('GROUPNAME'),
-    'USER': os.environ.get('GROUPNAME', 'comptarcilite'),
-    'PASSWORD': os.environ.get('PASSWORD'),
-    'HOST': os.environ.get('MYSQL_HOST', 'mysql'),
-    'PORT': os.environ.get('MYSQL_PORT', '3306'),
-    'OPTIONS': {
-      'charset': 'utf8mb4'
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-  }
 }
 
 # Password validation
@@ -152,12 +145,10 @@ STATICFILES_DIRS = [
 #EMAIL
 from decouple import config
 
-
-import os
-EMAIL_HOST = os.environ.get('SMTP_HOST')
-EMAIL_PORT = os.environ.get('SMTP_PORT')
-EMAIL_HOST_USER = os.environ.get('SMTP_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('SMTP_PWD')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "Comptarcilite <no-reply@comptarcilite.tk>"
