@@ -152,10 +152,10 @@ STATICFILES_DIRS = [
 #EMAIL
 from decouple import config
 
-EMAIL_HOST = config('SMTP_HOST')
-EMAIL_PORT = config('SMTP_PORT', cast=int)
-EMAIL_HOST_USER = config('SMTP_USER')
-EMAIL_HOST_PASSWORD = config('SMTP_PWD')
+EMAIL_HOST = os.environ['SMTP_HOST']
+EMAIL_PORT = os.environ['SMTP_PORT']
+EMAIL_HOST_USER = os.environ['SMTP_USER']
+EMAIL_HOST_PASSWORD = os.environ['SMTP_PWD']
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "Comptarcilite <no-reply@comptarcilite.tk>"
