@@ -100,7 +100,7 @@ DATABASES = {
     'NAME': os.environ.get('GROUPNAME'),
     'USER': os.environ.get('GROUPNAME', 'root'),
     'PASSWORD': os.environ.get('PASSWORD', ''),
-    'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
+    'HOST': os.environ.get('MYSQL_HOST', 'mysql'),
     'PORT': os.environ.get('MYSQL_PORT', '3306'),
     'OPTIONS': {
       'charset': 'utf8mb4'
