@@ -158,6 +158,7 @@ def get_user_list(request):
 ## Activation du lien d'inscription
 def activateAccountUser(request, uidb64, token):
     try:
+        message = ""
         uid = force_bytes(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
