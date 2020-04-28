@@ -26,7 +26,7 @@ SECRET_KEY = 'f1pq(cb#$%g)9a3y-)wv7=$im4k7b2w3$@z14h3iab@&fb%r6l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.56.101", "localhost", "127.0.0.1","comptarcilite.srvz-webapp.he-arc.ch"]
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = '/auth/'
 LOGIN_REDIRECT_URL = '/'
