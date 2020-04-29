@@ -21,6 +21,10 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+from django.middleware import csrf
 
 
 # Create your views here.
@@ -208,3 +212,20 @@ def getMembers(request):
     members = User.objects.all()
     serializer = UserSerializer(members, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+@api_view(['POST'])
+def addTransactions(request):
+    request.data["user"] = request.user.id
+    serializer = TransactionSerializer(data=request.data)
+    print(request.data)
+    print(serializer)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    print(serializer.errors)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getCsrfToken(request):
+    token = csrf.get_token(request)
+    return JsonResponse({'token': token})

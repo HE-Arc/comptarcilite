@@ -13,6 +13,12 @@ let vue = new Vue({
         memberName: "",
         membersList: [],
         total: 0,
+        withdrawal: 0,
+        deposit: 0,
+        description: "",
+        timestamp: new Date(Date.now()).toJSON(),
+        transactionSuccess: null,
+        transactionMessage: "",
     },
     mounted() {
         axios.get(url).then(response => {
@@ -35,7 +41,7 @@ let vue = new Vue({
                 }
 
                 //Adding .00 to total if int and convert to string for display
-                if(this.total - parseInt(this.total) === 0)
+                if (this.total - parseInt(this.total) === 0)
                     this.total += ".00";
                 else
                     this.total = this.total.toString();
@@ -63,5 +69,45 @@ let vue = new Vue({
                 console.log(this.membersList);
             });
         },
+        addTransaction: function() {
+            let csrf_token = "";
+            data = {
+                "timestamp": this.timestamp,
+                "description": this.description,
+                "user": this.user,
+                "account": this.transactions[0].account,
+            };
+            if (this.withdrawal > 0) {
+                data["amount"] = -this.withdrawal;
+            } else if (this.deposit > 0) {
+                data["amount"] = this.deposit;
+            } else {
+                this.transactionSuccess = false;
+                this.transactionMessage = "Vous devez ajouter un montant !";
+                return;
+            }
+            axios.get('/csrf_token/')
+                .then(response => {
+                    csrf_token = response.data["token"];
+                    axios.post('/transactions/', data, {
+                            headers: {
+                                'X-CSRFToken': csrf_token,
+                            },
+                        })
+                        .then(response => {
+                            this.transactionSuccess = true;
+                            this.transactionMessage = "Transaction ajouté avec succès";
+                            this.getAccount(this.transactions[0].account);
+                            this.description = "";
+                            this.withdrawal = 0;
+                            this.deposit = 0;
+                        })
+                        .catch(error => {
+                            this.transactionSuccess = false;
+                            this.transactionMessage = error;
+                        });
+                })
+
+        }
     },
 });

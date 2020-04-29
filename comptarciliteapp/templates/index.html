@@ -1,12 +1,8 @@
-{% extends 'base.html' %}
-{% block title %}Comptarcilite index{% endblock %}
-{% block import %}
-{% load static %}
+{% extends 'base.html' %} {% block title %}Comptarcilite index{% endblock %} {% block import %} {% load static %}
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="{% static "js/vueApp.js" %}"></script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container" id="app">
     <div class="row title-spacer">
         <div class="col-md-12">
@@ -58,7 +54,16 @@
                         <td v-if="transaction.amount>0"></td>
                         <td v-else class="text-danger">[[transaction.amount.split("-")[1].replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                     </tr>
+                    <tr v-on:keyup.enter="addTransaction">
+                        <td><input type="text" v-model="timestamp"></td>
+                        <td><input type="text" v-model="description"></td>
+                        <td><input type="text" v-model="deposit"></td>
+                        <td><input type="text" v-model="withdrawal"></td>
+                    </tr>
                 </table>
+                
+                <div class="alert alert-success" v-if="transactionSuccess===true">[[transactionMessage]]</div>
+                <div class="alert alert-danger" v-if="transactionSuccess===false">[[transactionMessage]]</div>
 
                 <p>
                     Balance du compte :

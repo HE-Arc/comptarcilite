@@ -31,5 +31,7 @@ urlpatterns = [
     path('members/<int:member_id>', views.getMemberById, name='membersById'),
     path('members/<member_name>', views.getMemberByName, name='memberName'),
     path('members/', views.getMembers, name='members'),
+    path('transactions/', views.addTransactions, name="addTransaction"),
+    path('csrf_token/', views.getCsrfToken, name="csrf_tok"),
 
 ]
