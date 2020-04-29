@@ -8,4 +8,5 @@ django-bootstrap4
 django-login-required-middleware
 python-decouple
 django-widget-tweaks
+django-createsuperuser
 mysqlclient==1.4.6

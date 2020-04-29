@@ -31,6 +31,41 @@ namespace :python do
     end
 end
 
+after 'deploy:symlink:release', 'django:configuration'
+
+
+namespace :django do
+    desc 'Gestion de la configuration'
+	
+    task :configuration do
+        on roles(:web) do |h|
+	    execute "cp /home/poweruser/valeurs /var/www/comptarcilite/current/.env"
+		execute "cp /home/poweruser/settings_withcred.py /var/www/comptarcilite/current/comptarcilite/settings.py"
+        end
+    end
+	   
+	task :migration do
+        on roles(:web) do |h|
+	    execute "python3.6 -m venv #{venv_path}"
+           execute "source #{venv_path}/bin/activate"
+	    execute "#{venv_path}/bin/python3.6 #{release_path}/manage.py migrate"
+		execute "#{venv_path}/bin/python3.6 #{release_path}/manage.py makemigrations"
+		execute "#{venv_path}/bin/python3.6 #{release_path}/manage.py collectstatic"
+		end
+    end
+	
+	task :finishmigration do
+        on roles(:web) do |h|
+		execute "cp /home/poweruser/settings.py /var/www/comptarcilite/current/comptarcilite/settings.py"
+		end
+    end
+end
+
+
+after 'django:configuration', 'django:migration'
+after 'django:migration', 'django:finishmigration'
+after 'django:finishmigration', 'uwsgi:restart'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
