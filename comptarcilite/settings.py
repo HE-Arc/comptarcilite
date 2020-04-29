@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'widget_tweaks',
-    'django_createsuperuser',
+    
 ]
 
 MIDDLEWARE = [

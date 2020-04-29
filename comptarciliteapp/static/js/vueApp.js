@@ -33,7 +33,6 @@ let vue = new Vue({
                 this.transactions = response.data;
                 this.accountId = this.accounts.findIndex(account => account.id === id);
                 this.accountGet = true;
-                console.log(this.transactions);
 
                 // Calculate account's total amount of money
                 this.total = 0.0;
@@ -48,11 +47,8 @@ let vue = new Vue({
                     this.total = this.total.toString();
 
 
-                console.log(this.total);
                 //Adding thousand separator to account's total amount
                 this.total = this.total.replace(/\B(?=(\d{3})+(?!\d))/g, "'");
-                console.log(this.total);
-                console.log(this.accounts[this.accountId]);
             });
         },
 
@@ -60,14 +56,12 @@ let vue = new Vue({
             axios.get('/members/' + id).then(response => {
                 this.members.push(response.data);
                 this.memberName = "";
-                console.log(this.members);
             });
         },
 
         getMembers: function() {
             axios.get('/members/').then(response => {
                 this.membersList = response.data;
-                console.log(this.membersList);
             });
         },
         addTransaction: function() {
