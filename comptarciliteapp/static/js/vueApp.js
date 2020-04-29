@@ -16,7 +16,7 @@ let vue = new Vue({
         withdrawal: 0,
         deposit: 0,
         description: "",
-        timestamp: new Date(Date.now()).toJSON(),
+        timestamp: "",
         transactionSuccess: null,
         transactionMessage: "",
     },
@@ -25,6 +25,7 @@ let vue = new Vue({
             this.accounts = response.data;
         });
         this.getMembers();
+        this.timestamp = this.getFormattedDate(new Date(Date.now()));
     },
     methods: {
         getAccount: function(id) {
@@ -72,7 +73,7 @@ let vue = new Vue({
         addTransaction: function() {
             let csrf_token = "";
             data = {
-                "timestamp": this.timestamp,
+                "timestamp": new Date(Date.parse(this.timestamp)).toJSON(),
                 "description": this.description,
                 "user": this.user,
                 "account": this.transactions[0].account,
@@ -108,6 +109,10 @@ let vue = new Vue({
                         });
                 })
 
-        }
+        },
+        getFormattedDate: function(date) {
+            dateType = new Date(Date.parse(date));
+            return dateType.getFullYear() + "-" + (dateType.getMonth() + 1).toString() + "-" + dateType.getDate() + " " + dateType.getHours() + ":" + dateType.getMinutes();
+        },
     },
 });

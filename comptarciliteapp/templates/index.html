@@ -47,7 +47,8 @@
                         </tr>
                     </thead>
                     <tr v-if="transactions !== []" v-for="(transaction, index) in transactions">
-                        <td>[[transaction.timestamp.split("T")[0] ]] [[ transaction.timestamp.split("T")[1].split("+")[0] ]]</td>
+                        <!--<td>[[transaction.timestamp.split("T")[0] ]] [[ transaction.timestamp.split("T")[1].split("+")[0] ]]</td>-->
+                        <td>[[getFormattedDate(transaction.timestamp)]]</td>
                         <td>[[transaction.description]]</td>
                         <td v-if="transaction.amount>0" class="text-success">[[ transaction.amount.replace(/\B(?=(\d{3})+(?!\d))/g, "'") ]]</td>
                         <td v-else></td>
