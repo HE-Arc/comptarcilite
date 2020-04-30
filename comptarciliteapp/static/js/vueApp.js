@@ -19,6 +19,7 @@ let vue = new Vue({
         timestamp: "",
         transactionSuccess: null,
         transactionMessage: "",
+        accountDbId: 0,
     },
     mounted() {
         axios.get(url).then(response => {
@@ -32,6 +33,7 @@ let vue = new Vue({
             axios.get('/transactions/account/' + id).then(response => {
                 this.transactions = response.data;
                 this.accountId = this.accounts.findIndex(account => account.id === id);
+                this.accountDbId = id;
                 this.accountGet = true;
 
                 // Calculate account's total amount of money
@@ -70,7 +72,7 @@ let vue = new Vue({
                 "timestamp": new Date(Date.parse(this.timestamp)).toJSON(),
                 "description": this.description,
                 "user": this.user,
-                "account": this.transactions[0].account,
+                "account": this.accountDbId,
             };
             if (this.withdrawal > 0) {
                 data["amount"] = -this.withdrawal;
@@ -92,7 +94,7 @@ let vue = new Vue({
                         .then(response => {
                             this.transactionSuccess = true;
                             this.transactionMessage = "Transaction ajouté avec succès";
-                            this.getAccount(this.transactions[0].account);
+                            this.getAccount(this.accountDbId);
                             this.description = "";
                             this.withdrawal = 0;
                             this.deposit = 0;
